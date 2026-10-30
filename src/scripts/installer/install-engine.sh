@@ -234,6 +234,13 @@ cd - > /dev/null
 # -----------------------------------------------------------------
 #  [4/5]  STORAGE & SERVICE INITIALIZATION
 # -----------------------------------------------------------------
+if [ "${AICLI_RUNTIME_ONLY:-0}" = "1" ]; then
+    # Downstream same-layout deployment: existing services/sessions retain their
+    # captured generation. No storage initialization, migration or eviction.
+    log_ok "Runtime and backend updated; HOME, Agent Storage and running services preserved."
+    log_progress "100"
+    exit 0
+fi
 log_progress "60"
 log_step "[4/5] Initializing Services..."
 
@@ -251,7 +258,9 @@ bash /tmp/aicli-storage.sh
 bash /tmp/aicli-ui.sh
 
 # 3. Development/Legacy Migration (If needed)
-bash /tmp/aicli-legacy.sh
+if [ "${AICLI_PRESERVE_STORAGE:-0}" != "1" ]; then
+    bash /tmp/aicli-legacy.sh
+fi
 
 # -----------------------------------------------------------------
 #  [5/5]  FINALIZING & PERMISSIONS
