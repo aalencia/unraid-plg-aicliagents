@@ -1,8 +1,12 @@
 <?xml version='1.0' standalone='yes'?>
 
-<PLUGIN name="unraid-aicliagents" author="John White" version="2026.10.21.01" launch="Settings/AICliAgentsManager" pluginURL="https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/unraid-aicliagents.plg" min="7.2.0" support="https://forums.unraid.net/topic/197460-plugin-support-unraid-tab-for-ai-cli-coding-agents-gemini-cli-claude-code-opencode-kilo-code-pi-coder-codex-cli-factory-droid-cli-copilot-nano-coder/" icon="assets/icons/google-gemini.png">
+<PLUGIN name="unraid-aicliagents" author="John White" version="2026.10.29.01" launch="Settings/AICliAgentsManager" pluginURL="https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/unraid-aicliagents.plg" min="7.2.0" support="https://forums.unraid.net/topic/197460-plugin-support-unraid-tab-for-ai-cli-coding-agents-gemini-cli-claude-code-opencode-kilo-code-pi-coder-codex-cli-factory-droid-cli-copilot-nano-coder/" icon="assets/icons/google-gemini.png">
 
 <CHANGES>
+## 2026.10.29.01
+
+Downstream runtime boot fix. Same-layout live updates preserve running sessions and skip storage initialization and migration. Required runtime failure blocks activation and auto-launch.
+
 ## 2026.10.21.01
 
 **Live dictation (new)**
@@ -685,52 +689,52 @@
 
 
 <!-- MANIFEST: Download Modular Scripts (Installer) -->
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-clean-2026.10.21.01.sh">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/scripts/installer/cleanup.sh</URL>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-clean-2026.10.29.01.sh">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/scripts/installer/cleanup.sh</URL>
 <SHA256>d532bd0ec7a22d7128e798db3a85e2daaeec9901e5b8e35080ff41312255e926</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-legacy-2026.10.21.01.sh">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/scripts/installer/migrate-from-geminicli.sh</URL>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-legacy-2026.10.29.01.sh">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/scripts/installer/migrate-from-geminicli.sh</URL>
 <SHA256>2b9bedd8ec730e00f0dadd62b2c87c11a0792505f83742f857c22bc87b0dc24b</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-runtime-2026.10.21.01.sh">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/scripts/installer/runtime.sh</URL>
-<SHA256>659ba6d77a91c98c08e24f0b4bdd7fad65da0ec19b3c57c71d6c802c02f5f231</SHA256>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-runtime-2026.10.29.01.sh">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/scripts/installer/runtime.sh</URL>
+<SHA256>051cd0bbd521748765ddb8d4ed457ada0f5524167d3ef93f3e25fb5fa63f7b4d</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-ui-2026.10.21.01.sh">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/scripts/installer/ui-assets.sh</URL>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-ui-2026.10.29.01.sh">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/scripts/installer/ui-assets.sh</URL>
 <SHA256>61ae68743a6da42aa8c33996b932e0ec8fc5fc8033fcd11ec420579c2e8a2474</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-storage-2026.10.21.01.sh">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/scripts/installer/storage.sh</URL>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-storage-2026.10.29.01.sh">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/scripts/installer/storage.sh</URL>
 <SHA256>2a6881ef5d717523f4d5c64baf1c031c1e543a621b89c2b40b18ead7a07d0a96</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-finalize-2026.10.21.01.sh">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/scripts/installer/finalize.sh</URL>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-finalize-2026.10.29.01.sh">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/scripts/installer/finalize.sh</URL>
 <SHA256>38cefa1e1d6e8aee40c934315dd9e24c1e4ea875eb3543828c9c6d065b18e067</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-repair-2026.10.21.01.sh">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/scripts/user/repair-plugin.sh</URL>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-repair-2026.10.29.01.sh">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/scripts/user/repair-plugin.sh</URL>
 <SHA256>80eb4eadb27f0538b4c477873555a20904fc23958c48a956c1f7d0ff0eeabaac</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-stop-2026.10.21.01.sh">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/scripts/user/stop-plugin.sh</URL>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-stop-2026.10.29.01.sh">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/scripts/user/stop-plugin.sh</URL>
 <SHA256>664fc43d708b01c9b8e17b73186123af54590df3b3cb014e947ee17bfa8aed20</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-stop-warning-2026.10.21.01.page">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/ArrayStopWarning.page</URL>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-stop-warning-2026.10.29.01.page">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/ArrayStopWarning.page</URL>
 <SHA256>4293d13ca84783aca5a12adc9e09c136f7aee353f0aebf65b796d5e63475e05d</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-src-2026.10.21.01.tar.gz">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src.tar.gz</URL>
-<SHA256>007d8436506b45da9af980db963143ea5c8b407d9a7187736da350ad4df489e4</SHA256>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-src-2026.10.29.01.tar.gz">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src.tar.gz</URL>
+<SHA256>2ce005ae28e22c9acbf4951668c439f54d11421a9f80898150efeac7d48c6de1</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-engine-2026.10.21.01.sh">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/scripts/installer/install-engine.sh</URL>
-<SHA256>8e15c8762a8fae491a4b72bdbe36c5fab9e14d5037b1e9d0305dd1bd443d3795</SHA256>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-engine-2026.10.29.01.sh">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/scripts/installer/install-engine.sh</URL>
+<SHA256>56e4f3f71fb000cd2697b3552f679d674909eba8dbeef1f795330b7ac63cf28f</SHA256>
 </FILE>
-<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-uninstaller-2026.10.21.01.sh">
-<URL>https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main/src/scripts/uninstaller/uninstall-engine.sh</URL>
+<FILE Name="/boot/config/plugins/unraid-aicliagents/aicli-uninstaller-2026.10.29.01.sh">
+<URL>https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01/src/scripts/uninstaller/uninstall-engine.sh</URL>
 <SHA256>28fdc993a339db35acec3f6a165fd52450273848833522a6d8e685a3efe89cd9</SHA256>
 </FILE>
 
@@ -740,8 +744,8 @@
 #!/bin/bash
 # AICliAgents Modular Installer Engine
 export NAME="unraid-aicliagents"
-export VERSION="2026.10.21.01"
-export GIT_URL="https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main"
+export VERSION="2026.10.29.01"
+export GIT_URL="https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/downstream-2026.10.29.01"
 export EMHTTP_DEST="/usr/local/emhttp/plugins/unraid-aicliagents"
 export CONFIG_DIR="/boot/config/plugins/unraid-aicliagents"
 
@@ -769,6 +773,66 @@ _OLD_LV="$(printf '%s' "$_OLD_LV_RAW" | tr -d '[:space:]')"
 [[ "$_OLD_LV" =~ ^[0-9]+$ ]] || _OLD_LV="0"
 export OLD_LAYOUT_VERSION="$_OLD_LV"
 
+# Downstream release: only an existing, same-layout plugin may be updated.
+# Never convert storage or consume a migration request as part of this fix.
+export AICLI_PRESERVE_STORAGE=1
+export AICLI_RUNTIME_ONLY=0
+if [ -s "$EMHTTP_DEST/src/includes/AICliAgentsManager.php" ]; then
+    export AICLI_RUNTIME_ONLY=1
+fi
+_downstream_layout="$_OLD_LV"
+if [ "$_downstream_layout" = "0" ] &amp;&amp; [ -s "$CONFIG_DIR/.layout-version" ]; then
+    _downstream_layout=$(tr -d '[:space:]' &lt; "$CONFIG_DIR/.layout-version")
+fi
+if [ "$_downstream_layout" != "1" ] || [ -e "$CONFIG_DIR/.migration_required" ]; then
+    echo "ERROR: runtime fix requires existing storage layout 1 with no pending migration; installation stopped." &gt;&amp;2
+    exit 1
+fi
+# A reboot has no RAM plugin directory, but layout 1 is already installed.
+# Keep cleanup on its non-destructive same-layout branch during reconstruction.
+export OLD_LAYOUT_VERSION=1
+export UPGRADE_MODE=1
+if [ "$AICLI_RUNTIME_ONLY" = "1" ]; then
+    _cfg="$CONFIG_DIR/unraid-aicliagents.cfg"
+    if [ ! -s "$_cfg" ]; then
+        echo "ERROR: existing plugin configuration missing; installation stopped." &gt;&amp;2
+        exit 1
+    fi
+    mapfile -t _storage_paths &lt; &lt;(/usr/bin/php -r '
+        $c=parse_ini_file($argv[1]);
+        foreach (["home_storage_path", "agent_storage_path"] as $k) {
+            $p=$c[$k] ?? "";
+            if (!$p || preg_match("/[\r\n]/",$p)) exit(1);
+            echo $p, PHP_EOL;
+        }' "$_cfg")
+    if [ "${#_storage_paths[@]}" -ne 2 ]; then
+        echo "ERROR: cannot verify configured HOME and Agent Storage paths; installation stopped." &gt;&amp;2
+        exit 1
+    fi
+    for _storage_path in "${_storage_paths[@]}"; do
+        if [ ! -d "$_storage_path" ]; then
+            echo "ERROR: configured storage path is unavailable; installation stopped." &gt;&amp;2
+            exit 1
+        fi
+        _storage_fs=$(findmnt -n -T "$_storage_path" -o FSTYPE 2&gt;/dev/null)
+        case "$_storage_fs" in
+            ""|rootfs|tmpfs|overlay)
+                echo "ERROR: configured storage resolves to an unavailable pool; installation stopped." &gt;&amp;2
+                exit 1 ;;
+        esac
+    done
+    _rollback="$CONFIG_DIR/downstream-rollback/2026.10.29.01"
+    mkdir -p "$_rollback" || exit 1
+    # Preserve the original descriptor once; never replace the rollback copy
+    # with this downstream descriptor on a repeated install.
+    if [ ! -e "$_rollback/unraid-aicliagents.plg" ]; then
+        cp /boot/config/plugins/unraid-aicliagents.plg "$_rollback/unraid-aicliagents.plg" || exit 1
+        readlink -f "$EMHTTP_DEST/src" &gt; "$_rollback/prior-source-path" || exit 1
+        sha256sum "$_rollback/unraid-aicliagents.plg" &gt; "$_rollback/SHA256SUMS" || exit 1
+    fi
+fi
+
+
 # OP #429: Clean orphan name-new.plg files left behind by prior aborted
 # installs. Unraid's plugin manager downloads updates to name-new.plg, runs
 # install, and atomic-renames -new.plg to .plg on success. Any abort before
@@ -780,12 +844,12 @@ export OLD_LAYOUT_VERSION="$_OLD_LV"
 for _orphan in "/boot/config/plugins/${NAME}-new.plg"; do
     [ -f "$_orphan" ] || continue
     _orphan_ver=$(grep -oP '&lt;!ENTITY version\s+"[^"]+"' "$_orphan" 2>/dev/null | grep -oP '"[^"]+"' | tr -d '"' | head -1)
-    if [ -n "$_orphan_ver" ] &amp;&amp; [ "$_orphan_ver" != "2026.10.21.01" ]; then
+    if [ -n "$_orphan_ver" ] &amp;&amp; [ "$_orphan_ver" != "2026.10.29.01" ]; then
         # Sort: if orphan_ver lex-sorts BEFORE our version, orphan is older — safe to remove.
-        _newest=$(printf '%s\n%s\n' "$_orphan_ver" "2026.10.21.01" | sort -V | tail -1)
-        if [ "$_newest" = "2026.10.21.01" ]; then
+        _newest=$(printf '%s\n%s\n' "$_orphan_ver" "2026.10.29.01" | sort -V | tail -1)
+        if [ "$_newest" = "2026.10.29.01" ]; then
             rm -f "$_orphan" "/var/log/plugins/${NAME}-new.plg" 2>/dev/null || true
-            echo "[$(date '+%Y-%m-%d %H:%M:%S')] [AICliAgents] INFO: Removed orphan ${NAME}-new.plg ($_orphan_ver, older than 2026.10.21.01)" &gt;&gt; "$LOG_FILE" 2&gt;/dev/null || true
+            echo "[$(date '+%Y-%m-%d %H:%M:%S')] [AICliAgents] INFO: Removed orphan ${NAME}-new.plg ($_orphan_ver, older than 2026.10.29.01)" &gt;&gt; "$LOG_FILE" 2&gt;/dev/null || true
         fi
     fi
 done
@@ -819,12 +883,12 @@ export -f log_status log_step log_ok log_warn log_fail log_progress get_ts
 # exists — on EVERY invocation, including a CA "Check for Updates" upgrade and a
 # reinstall — and no checksum is declared, so a FIXED cache name would serve the
 # first-ever installed payload forever. Every cached file therefore carries the
-# plugin version in its name (aicli-src-2026.10.21.01.tar.gz, aicli-engine-2026.10.21.01.sh,
+# plugin version in its name (aicli-src-2026.10.29.01.tar.gz, aicli-engine-2026.10.29.01.sh,
 # …): a new version is a new name that has never existed on flash, so it MUST be
 # fetched; the same version (reboot, reinstall) is a hit and stays network-free.
 # The version suffix is stripped here so every path the engine uses is unchanged.
 LOCAL_CACHE="/boot/config/plugins/unraid-aicliagents"
-CACHE_VERSION="2026.10.21.01"
+CACHE_VERSION="2026.10.29.01"
 for f in "$LOCAL_CACHE"/aicli-*-"$CACHE_VERSION".sh "$LOCAL_CACHE"/aicli-*-"$CACHE_VERSION".page "$LOCAL_CACHE"/aicli-src-"$CACHE_VERSION".tar.gz; do
     [ -f "$f" ] || continue
     base="$(basename "$f")"
@@ -893,10 +957,23 @@ if [ -f "/tmp/aicli-engine.sh" ]; then
     # #170: SUCCESS path only — sweep other versions' cached payloads off flash so
     # the cache stays one copy per file. Never runs after a failed install, so a
     # corrupt or incomplete download can never delete the last known-good cache.
-    find "$LOCAL_CACHE" -maxdepth 1 -type f -name 'aicli-*-????.??.??.??.*' ! -name "*-$CACHE_VERSION.*" -delete 2&gt;/dev/null || true
+    # Downstream: retain versioned release cache for rollback.
 else
     log_fail "Installer Engine (aicli-engine.sh) missing from /tmp. Aborting."
     exit 1
+fi
+
+if [ "${AICLI_RUNTIME_ONLY:-0}" = "1" ]; then
+    for _php in TerminalService AutoLaunchService; do
+        /usr/bin/php -l "$EMHTTP_DEST/src/includes/services/$_php.php" || exit 1
+    done
+    /usr/bin/php -r 'require $argv[1]; if (!\AICliAgents\Services\TerminalService::runtimeReady()) exit(1);' "$EMHTTP_DEST/src/includes/services/TerminalService.php" || exit 1
+    echo "AICLI_DOWNSTREAM_POSTFLIGHT_PASS"
+    readlink -f "$EMHTTP_DEST/src"
+    sha256sum "$EMHTTP_DEST/src/includes/services/TerminalService.php" "$EMHTTP_DEST/src/includes/services/AutoLaunchService.php" "$CONFIG_DIR/unraid-aicliagents.cfg"
+    log_ok "Runtime fix installed. Storage initialization and background migrations skipped."
+    rm -f /tmp/aicli-*.sh /tmp/aicli-*.page /tmp/aicli-src.tar.gz
+    exit 0
 fi
 
 # #337: EVERY background process this installer starts goes through the shared
@@ -908,7 +985,7 @@ AICLI_DETACH=/usr/local/emhttp/plugins/unraid-aicliagents/src/scripts/aicli-deta
 
 # Phase 6: Storage Migration (Background)
 # D-308: Moved OUTSIDE subshell/pipe to prevent installer hang.
-if [ -f /usr/local/emhttp/plugins/unraid-aicliagents/src/scripts/installer/migrate-btrfs-to-squashfs.sh ]; then
+if [ "${AICLI_PRESERVE_STORAGE:-0}" != "1" ] &amp;&amp; [ -f /usr/local/emhttp/plugins/unraid-aicliagents/src/scripts/installer/migrate-btrfs-to-squashfs.sh ]; then
     log_status "Initiating background storage migration (Btrfs -&gt; SquashFS)..."
     mkdir -p /tmp/unraid-aicliagents
     touch /tmp/unraid-aicliagents/migration.lock
