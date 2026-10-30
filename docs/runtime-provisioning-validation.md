@@ -1,5 +1,10 @@
 # Runtime provisioning failure propagation
 
+For the maintained downstream branch, see `DOWNSTREAM-RELEASE.md` and
+`downstream-release.json`: its separately versioned package has rebuilt artifacts
+and a storage-preserving live-update path. The source-only and owner-port release
+workflow below describes upstream PR #34, whose branch remains unchanged.
+
 This is an unreleased source change, not an installable release. Do not install
 the current `.plg` to test this branch: its checksums and `src.tar.gz` still
 describe the published release. The owner must regenerate the versioned lifecycle

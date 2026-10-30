@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<PLUGIN name="unraid-aicliagents-runtime-postflight" author="aalencia" version="2026.10.29.01"><FILE Run="/bin/bash"><INLINE>
+#!/bin/bash
+# Read-only evidence collection. Exit 1 always prevents diagnostic registration.
+set -u -o pipefail
+base=/usr/local/emhttp/plugins/unraid-aicliagents
+config=/boot/config/plugins/unraid-aicliagents
+version=2026.10.29.01
+ok=1
+blocked() { echo "AICLI_POSTFLIGHT_CHECK_FAILED: $*"; ok=0; }
+read_hash() {
+    local path="$1" expected="${2:-}" actual
+    if [ ! -f "$path" ]; then blocked "missing file: $path"; return; fi
+    actual=$(sha256sum "$path" | awk '{print $1}') || { blocked "cannot hash: $path"; return; }
+    echo "READ_SHA256 $actual $path"
+    if [ -n "$expected" ] &amp;&amp; [ "$actual" != "$expected" ]; then blocked "unexpected published bytes: $path"; fi
+}
+
+active=$(readlink -f "$base/src") || active=""
+echo "ACTIVE_SOURCE=$active"
+[ -n "$active" ] &amp;&amp; [ -d "$active" ] || blocked "active source unavailable"
+read_hash "$base/src/includes/services/TerminalService.php"
+read_hash "$base/src/includes/services/AutoLaunchService.php"
+# A failed installation should leave the old generation active. Record its
+# identity without requiring activation or retrying an update.
+terminal_sha=$(sha256sum "$base/src/includes/services/TerminalService.php" | awk '{print $1}') || terminal_sha=""
+auto_sha=$(sha256sum "$base/src/includes/services/AutoLaunchService.php" | awk '{print $1}') || auto_sha=""
+case "$terminal_sha:$auto_sha" in
+    09d9e00b7170101cc7d59aa1e82621b3f66c47de8fa03140be83141837dff545:8ef685960a4b1f436c86f9e66c809e505dd5fa1f47236e6206951878ea47002f) source_state=upstream_release ;;
+    3b434484932b0738b40dbf329517b7e3d08eebc086e25eea0b142b33cf5b7951:516bb75196ba7c5b6765b63f1c77ac89f8eacf93ea9df6530df831de6ec64707) source_state=patched_release ;;
+    *) source_state=mixed_or_unknown; blocked "active source identity is unrecognized" ;;
+esac
+echo "ACTIVE_SOURCE_STATE=$source_state"
+if [ -x "$base/.runtime/bin/tmux" ]; then
+    "$base/.runtime/bin/tmux" -V || blocked "portable tmux version check failed"
+else
+    blocked "portable tmux unavailable"
+fi
+read_hash "$config/unraid-aicliagents.cfg"
+mapfile -t paths &lt; &lt;(/usr/bin/php -r '
+    $c=parse_ini_file($argv[1]);
+    foreach (["home_storage_path", "agent_storage_path"] as $k) {
+        $p=$c[$k]??"";
+        if (!$p || preg_match("/[\r\n]/",$p)) exit(1);
+        echo $p, PHP_EOL;
+    }' "$config/unraid-aicliagents.cfg")
+if [ "${#paths[@]}" -ne 2 ]; then
+    blocked "cannot determine HOME and Agent Storage paths"
+else
+    for path in "${paths[@]}"; do
+        if [ ! -d "$path" ]; then blocked "storage directory unavailable"; continue; fi
+        echo "STORAGE_PATH=$(readlink -f "$path")"
+        fs=$(findmnt -n -T "$path" -o FSTYPE) || fs=""
+        [ "$fs" = zfs ] || blocked "configured storage is not mounted ZFS"
+        findmnt -n -T "$path" -o TARGET,SOURCE,FSTYPE || blocked "cannot inspect storage mount"
+        stat -Lc 'STORAGE_STAT device=%d inode=%i mode=%a uid=%u gid=%g mtime=%Y' "$path" || blocked "cannot stat storage directory"
+    done
+fi
+read_hash /boot/config/plugins/unraid-aicliagents.plg
+read_hash /var/log/plugins/unraid-aicliagents.plg
+read_hash "$config/aicli-engine-$version.sh" 56e4f3f71fb000cd2697b3552f679d674909eba8dbeef1f795330b7ac63cf28f
+read_hash "$config/aicli-runtime-$version.sh" 051cd0bbd521748765ddb8d4ed457ada0f5524167d3ef93f3e25fb5fa63f7b4d
+read_hash "$config/aicli-src-$version.tar.gz" 2ce005ae28e22c9acbf4951668c439f54d11421a9f80898150efeac7d48c6de1
+rollback="$config/downstream-rollback/$version"
+read_hash "$rollback/unraid-aicliagents.plg"
+if [ -s "$rollback/prior-source-path" ]; then
+    IFS= read -r prior &lt; "$rollback/prior-source-path" || prior=""
+    echo "PRIOR_SOURCE=$prior"
+    [ -n "$prior" ] &amp;&amp; [ -d "$prior" ] || blocked "retained prior generation unavailable"
+    if [ "$prior" = "$active" ]; then echo 'PRIOR_SOURCE_STILL_ACTIVE=1'; else echo 'PRIOR_SOURCE_STILL_ACTIVE=0'; fi
+else
+    blocked "prior source record unavailable"
+fi
+if [ "$ok" = 1 ]; then
+    echo 'AICLI_DIAGNOSTIC_PASS: source/runtime/cache and mounted storage evidence collected; compare config/storage/rollback evidence with preflight. This does not assert successful installation.'
+else
+    echo 'AICLI_POSTFLIGHT_BLOCKED: one or more checks failed; installation is not validated.'
+fi
+exit 1
+
+</INLINE></FILE></PLUGIN>
