@@ -4,13 +4,19 @@ This fork's `downstream/runtime-boot-fix` branch packages the source fix from
 upstream PR #34 for an existing layout-1 installation. It is separately maintained
 and is not an official upstream release. The upstream PR branch stays source-only.
 
-Release version: **2026.10.29.01**; tag: **downstream-2026.10.29.01**.
+Prepared release version: **2026.10.29.02**; tag: **downstream-2026.10.29.02**.
 See `downstream-release.json` for the exact source commit and artifact digests.
+
+Version 2026.10.29.01 was rejected before activation because its readiness check
+assumed `unsquashfs -version` returns zero. The pinned 4.5 executable prints its
+version and returns one. Version .02 accepts zero or one only with the expected
+unsquashfs version banner; timeouts, loader errors and other failures remain fatal.
+The .01 tag is retained unchanged for evidence, not recommended for installation.
 
 During a live update, preflight requires the existing plugin, matching layout,
 no migration request, configured HOME/Agent Storage directories and mounted storage.
 The package saves the original descriptor and source pointer under the plugin's
-`downstream-rollback/2026.10.29.01` cache directory and retains older versioned
+`downstream-rollback/2026.10.29.02` cache directory and retains older versioned
 payloads. Runtime checks precede generation activation. The live-update mode then
 exits before cleanup, storage/service initialization or any background worker.
 The original service processes and captured generations remain available.
@@ -27,9 +33,10 @@ tag. Future changes require a new version/tag and regenerated artifacts. The
 descriptor points to the pinned fork tag, so returning to upstream releases is an
 explicit operator action after the upstream fix ships.
 
-Validation includes the 12 source fault tests, actual packaged engine/runtime in
+Validation includes the 15 source fault tests, actual packaged engine/runtime in
 an isolated Linux root (empty tmux transfer, successful pinned tmux, repeat update),
-unchanged HOME/Agent Storage sentinels, executed PHP launch guards and INI parsing,
+the exact pinned Slackware SquashFS executables, unchanged HOME/Agent Storage
+sentinels, executed PHP launch guards and INI parsing,
 and the full live `.plg` shell flow with mount/INI-reader fixtures. Separate
 independent review verifies archive content/modes, all 12 pins and negative
 preflight cases. These tests do not claim a native Unraid reboot or full lifecycle

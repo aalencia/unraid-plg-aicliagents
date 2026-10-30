@@ -1,22 +1,22 @@
 {
-  "version": "2026.10.29.01",
-  "tag": "downstream-2026.10.29.01",
-  "source_commit": "5d88bda6ede900461c883e9af0c409d2960950cc",
-  "upstream_patch": "e7f7c74040b55b2446fdb5698908e33d55195379",
+  "version": "2026.10.29.02",
+  "tag": "downstream-2026.10.29.02",
+  "source_commit": "919421c0d1aa9a1b46392c30fa118fda00a85740",
+  "upstream_patch": "5be9a7366cee002a5fba8877756cdb4483731f41",
   "artifacts": {
     "src/scripts/installer/cleanup.sh": "d532bd0ec7a22d7128e798db3a85e2daaeec9901e5b8e35080ff41312255e926",
     "src/scripts/installer/migrate-from-geminicli.sh": "2b9bedd8ec730e00f0dadd62b2c87c11a0792505f83742f857c22bc87b0dc24b",
-    "src/scripts/installer/runtime.sh": "051cd0bbd521748765ddb8d4ed457ada0f5524167d3ef93f3e25fb5fa63f7b4d",
+    "src/scripts/installer/runtime.sh": "56fcdc14c64ca564930bdae838ff564371c28ddbe6694922ca0218619c221661",
     "src/scripts/installer/ui-assets.sh": "61ae68743a6da42aa8c33996b932e0ec8fc5fc8033fcd11ec420579c2e8a2474",
     "src/scripts/installer/storage.sh": "2a6881ef5d717523f4d5c64baf1c031c1e543a621b89c2b40b18ead7a07d0a96",
     "src/scripts/installer/finalize.sh": "38cefa1e1d6e8aee40c934315dd9e24c1e4ea875eb3543828c9c6d065b18e067",
     "src/scripts/user/repair-plugin.sh": "80eb4eadb27f0538b4c477873555a20904fc23958c48a956c1f7d0ff0eeabaac",
     "src/scripts/user/stop-plugin.sh": "664fc43d708b01c9b8e17b73186123af54590df3b3cb014e947ee17bfa8aed20",
     "src/ArrayStopWarning.page": "4293d13ca84783aca5a12adc9e09c136f7aee353f0aebf65b796d5e63475e05d",
-    "src.tar.gz": "2ce005ae28e22c9acbf4951668c439f54d11421a9f80898150efeac7d48c6de1",
+    "src.tar.gz": "e634f4d2435dc599d96b7f263ef2087d7d9f318398e1a5a00ce7d8a75f8d748f",
     "src/scripts/installer/install-engine.sh": "56e4f3f71fb000cd2697b3552f679d674909eba8dbeef1f795330b7ac63cf28f",
     "src/scripts/uninstaller/uninstall-engine.sh": "28fdc993a339db35acec3f6a165fd52450273848833522a6d8e685a3efe89cd9"
   },
-  "plg_sha256": "639b1d3bf91059e45e900cbe64edf594155d4e2e8f4a58cb0d57956b17bf54be",
+  "plg_sha256": "706ce9522a0a5ac4cd113eb1109703b35f6e1cba2ed85891d01e774f414cb422",
   "production_installed": false
 }

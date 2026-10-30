@@ -17,7 +17,7 @@ import tarfile
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '2026.10.29.01'
+VERSION = '2026.10.29.02'
 TAG = 'downstream-' + VERSION
 URL = 'https://raw.githubusercontent.com/aalencia/unraid-plg-aicliagents/' + TAG
 
@@ -72,7 +72,7 @@ def build(ref='HEAD'):
     before = before.replace('2026.10.21.01', VERSION).replace('https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main', URL)
     after = after.replace('2026.10.21.01', VERSION).replace('https://raw.githubusercontent.com/johnpwhite/unraid-plg-aicliagents/main', URL)
     descriptor = before + '<CHANGES>\n## ' + VERSION + '\n\nDownstream runtime boot fix. Same-layout live updates preserve running sessions and skip storage initialization and migration. Required runtime failure blocks activation and auto-launch.\n' + history + '</CHANGES>' + after
-    preflight = git('show', ref + ':tools/downstream-preflight.sh').decode()
+    preflight = git('show', ref + ':tools/downstream-preflight.sh').decode().replace('2026.10.29.01', VERSION)
     marker = 'export OLD_LAYOUT_VERSION="$_OLD_LV"'
     descriptor = descriptor.replace(marker, marker + '\n\n' + html.escape(preflight, quote=False), 1)
     descriptor = re.sub(r'^    find "\$LOCAL_CACHE".*-delete.*$', '    # Downstream: retain versioned release cache for rollback.', descriptor, flags=re.M)
@@ -112,7 +112,7 @@ fi
     if len(artifact_hashes) != 12:
         raise ValueError('Expected twelve pinned release files')
     (ROOT / 'unraid-aicliagents.plg').write_text(descriptor, encoding='utf-8', newline='\n')
-    manifest = {'version': VERSION, 'tag': TAG, 'source_commit': ref, 'upstream_patch': 'e7f7c74040b55b2446fdb5698908e33d55195379', 'artifacts': artifact_hashes, 'plg_sha256': hashlib.sha256(descriptor.encode()).hexdigest(), 'production_installed': False}
+    manifest = {'version': VERSION, 'tag': TAG, 'source_commit': ref, 'upstream_patch': '5be9a7366cee002a5fba8877756cdb4483731f41', 'artifacts': artifact_hashes, 'plg_sha256': hashlib.sha256(descriptor.encode()).hexdigest(), 'production_installed': False}
     (ROOT / 'downstream-release.json').write_text(json.dumps(manifest, indent=2) + '\n', newline='\n')
     print(json.dumps(manifest, indent=2))
 
